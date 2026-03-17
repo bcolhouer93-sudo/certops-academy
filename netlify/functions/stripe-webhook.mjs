@@ -1,6 +1,6 @@
-const STRIPE_WEBHOOK_SECRET = 'whsec_0SGJlJYbITOjrYRMgyVqx7YJ23F36HUB';
+const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 const SUPABASE_URL = 'https://dfbylunacfziuejbfbqw.supabase.co';
-const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRmYnlsdW5hY2Z6aXVlamJmYnF3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzcwMTAwOCwiZXhwIjoyMDg5Mjc3MDA4fQ.0WRGDDShfv6b4cm9yjhz0EAPsURXqnNQVrO4wPmJln4';
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 async function verifyStripeSignature(payload, sigHeader) {
   const parts = {};
