@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CertOps Academy — Train for IT Certifications by Doing the Job</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080b10;
+  --panel: #0e1219;
+  --panel2: #131925;
+  --border: #1a2030;
+  --cyan: #38bdf8;
+  --green: #34d399;
+  --amber: #fbbf24;
+  --red: #f87171;
+  --purple: #a78bfa;
+  --text1: #e8eaed;
+  --text2: #8b95a5;
+  --dim: #3e4a5c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text1); overflow-x: hidden; }
+a { color: var(--cyan); text-decoration: none; cursor: pointer; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,11,16,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.logo-icon { font-size: 20px; }
+.logo-accent { color: var(--cyan); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { font-size: 14px; color: var(--text2); transition: color .2s; }
+.nav-links a:hover { color: var(--text1); }
+.nav-actions { display: flex; gap: 10px; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text2); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 6px; cursor: pointer; transition: all .2s; }
+.btn-ghost:hover { border-color: var(--dim); color: var(--text1); }
+.btn-primary { background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); color: var(--cyan); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 6px; cursor: pointer; transition: all .2s; }
+.btn-primary:hover { background: rgba(56,189,248,0.2); box-shadow: 0 0 16px rgba(56,189,248,0.15); }
+
+/* HERO */
+.hero { position: relative; padding: 160px 24px 100px; text-align: center; overflow: hidden; }
+.hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
+.hero h1 { font-family: 'Orbitron', sans-serif; font-size: 42px; font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 20px; }
+.hero-accent { background: linear-gradient(90deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: 17px; line-height: 1.7; color: var(--text2); max-width: 600px; margin: 0 auto 32px; }
+.hero-cta { display: flex; gap: 12px; justify-content: center; margin-bottom: 48px; }
+.btn-hero { background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(167,139,250,0.1)); border: 1px solid rgba(56,189,248,0.35); color: var(--cyan); font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 600; padding: 14px 32px; border-radius: 8px; cursor: pointer; transition: all .25s; letter-spacing: 0.5px; }
+.btn-hero:hover { background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(167,139,250,0.15)); box-shadow: 0 0 30px rgba(56,189,248,0.15); transform: translateY(-1px); }
+.btn-hero span { margin-left: 6px; }
+.btn-ghost-lg { background: transparent; border: 1px solid var(--border); color: var(--text2); font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; padding: 14px 28px; border-radius: 8px; cursor: pointer; transition: all .2s; }
+.btn-ghost-lg:hover { border-color: var(--dim); color: var(--text1); }
+.hero-stats { display: flex; justify-content: center; align-items: center; gap: 32px; }
+.hs { text-align: center; }
+.hs-num { display: block; font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 700; color: var(--cyan); }
+.hs-label { font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: 1px; }
+.hs-divider { width: 1px; height: 32px; background: var(--border); }
+.hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%); pointer-events: none; }
+
+/* SECTIONS */
+.section-inner { max-width: 1100px; margin: 0 auto; padding: 100px 24px; }
+.section-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+.section-inner h2 { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+.section-sub { font-size: 15px; color: var(--text2); max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+
+/* TRACKS */
+.tracks { background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.track-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.track-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; cursor: pointer; transition: all .3s; position: relative; overflow: hidden; }
+.track-card:hover { border-color: rgba(56,189,248,0.3); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.tc-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
+.tc-blue { color: var(--cyan); background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); }
+.tc-cyan { color: var(--green); background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); }
+.tc-red { color: var(--red); background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2); }
+.tc-icon { font-size: 36px; margin-bottom: 12px; }
+.track-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.track-card p { font-size: 13.5px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+.tc-meta { display: flex; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim); margin-bottom: 12px; }
+.tc-free { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green); background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.15); padding: 4px 10px; border-radius: 4px; display: inline-block; }
+
+/* HOW */
+.steps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.step { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+.step-num { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 800; color: var(--cyan); opacity: 0.3; margin-bottom: 12px; }
+.step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.step p { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
+
+/* PRICING */
+.pricing { background: var(--panel); border-top: 1px solid var(--border); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.price-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 32px 24px; position: relative; transition: all .3s; }
+.price-card.featured { border-color: rgba(56,189,248,0.4); background: linear-gradient(135deg, var(--bg), rgba(56,189,248,0.03)); }
+.pc-pop { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); background: var(--bg); border: 1px solid rgba(56,189,248,0.3); padding: 4px 14px; border-radius: 12px; white-space: nowrap; }
+.pc-name { font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text2); margin-bottom: 8px; }
+.pc-price { font-family: 'Orbitron', sans-serif; font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+.pc-price span { font-size: 14px; font-weight: 400; color: var(--dim); }
+.pc-desc { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+.price-card ul { list-style: none; margin-bottom: 28px; }
+.price-card ul li { font-size: 13px; padding: 6px 0; color: var(--text2); }
+.price-card ul li.dim { color: var(--dim); }
+.btn-outline { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); color: var(--text2); font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all .2s; }
+.btn-outline:hover { border-color: var(--dim); color: var(--text1); }
+.btn-primary-lg { width: 100%; padding: 12px; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); color: var(--cyan); font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all .2s; }
+.btn-primary-lg:hover { background: rgba(56,189,248,0.2); box-shadow: 0 0 20px rgba(56,189,248,0.12); }
+.btn-primary-lg.full { width: 100%; }
+
+/* FOOTER */
+.footer { border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 40px 24px; display: flex; align-items: center; justify-content: space-between; }
+.footer p { font-size: 12px; color: var(--dim); max-width: 500px; line-height: 1.5; }
+
+/* MODAL */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(8,11,16,0.9); display: none; align-items: center; justify-content: center; z-index: 200; }
+.modal-overlay.open { display: flex; }
+.modal-card { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 36px; max-width: 420px; width: 100%; position: relative; animation: popUp 0.3s ease; }
+@keyframes popUp { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: 1px solid var(--border); color: var(--dim); font-size: 18px; width: 32px; height: 32px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.modal-close:hover { color: var(--text1); border-color: var(--dim); }
+.modal-card h2 { font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.modal-card > p { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+.auth-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.auth-form input { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text1); outline: none; transition: border .2s; }
+.auth-form input:focus { border-color: var(--cyan); }
+.auth-toggle { font-size: 13px; color: var(--dim); text-align: center; }
+.auth-toggle a { color: var(--cyan); cursor: pointer; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero h1 { font-size: 28px; }
+  .hero-sub { font-size: 15px; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .track-grid, .steps-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 20px; }
+  .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+}
+
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.hero-accent{background:linear-gradient(90deg,var(--cyan),var(--purple),var(--cyan));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(56,189,248,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse 50% 60% at 50% 50%,black,transparent);}
+.hero-badge{animation:glowPulse 3s ease infinite;}
+.tc-icon{animation:float 4s ease-in-out infinite;}
+.track-card:nth-child(2) .tc-icon{animation-delay:-.5s;}
+.track-card:nth-child(3) .tc-icon{animation-delay:-1s;}
+.track-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s;}
+.track-card:nth-child(1)::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+.track-card:nth-child(2)::before{background:linear-gradient(90deg,var(--green),transparent);}
+.track-card:nth-child(3)::before{background:linear-gradient(90deg,var(--red),transparent);}
+.track-card:hover::before{opacity:1;}
+.track-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,0.35);}
+.step-num{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.35;}
+.logo-icon{filter:drop-shadow(0 0 6px rgba(56,189,248,0.4));}
+.hs-num{text-shadow:0 0 20px rgba(56,189,248,0.3);}
+.price-card.featured:hover{box-shadow:0 0 40px rgba(56,189,248,0.08);}
+.terminal-preview{max-width:680px;margin:50px auto 0;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;animation:popUp 1s ease .3s both;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.term-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);background:rgba(14,18,25,0.6);}
+.term-dot{width:10px;height:10px;border-radius:50%;}
+.term-dot.r{background:#ff5f56;}.term-dot.y{background:#ffbd2e;}.term-dot.g{background:#27c93f;}
+.term-title{margin-left:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);}
+.term-body{padding:16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;color:var(--text2);}
+.contact{border-top:1px solid var(--border);}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.contact-info h3{font-size:17px;font-weight:600;margin-bottom:12px;}
+.contact-info p{font-size:13.5px;color:var(--text2);line-height:1.7;margin-bottom:20px;}
+.contact-channels{display:flex;flex-direction:column;gap:10px;}
+.cc-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text2);transition:all .2s;}
+.cc-item:hover{border-color:rgba(56,189,248,0.3);}
+.cc-item .cc-ico{font-size:18px;width:32px;text-align:center;flex-shrink:0;}
+.cc-item .cc-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-bottom:1px;}
+.cc-item .cc-val{color:var(--text1);font-weight:500;}
+.contact-form{display:flex;flex-direction:column;gap:10px;}
+.contact-form input,.contact-form textarea{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none;transition:border .2s;resize:vertical;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--cyan);box-shadow:0 0 12px rgba(56,189,248,0.1);}
+.contact-form textarea{min-height:120px;}
+.btn-send{width:100%;padding:13px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);color:var(--cyan);font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;border-radius:8px;cursor:pointer;transition:all .2s;}
+.btn-send:hover{background:rgba(56,189,248,0.22);box-shadow:0 0 20px rgba(56,189,248,0.12);}
+.form-success{display:none;text-align:center;padding:30px;}
+.form-success.show{display:block;}
+.form-success .fs-ico{font-size:40px;margin-bottom:10px;}
+.form-success h3{font-size:17px;margin-bottom:6px;}
+.form-success p{font-size:13px;color:var(--text2);}
+@media(max-width:768px){.contact-inner{grid-template-columns:1fr;}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+<div class="logo"><span class="logo-icon">&#9881;</span> CertOps<span class="logo-accent">Academy</span></div>
+<div class="nav-links"><a href="#tracks">Courses</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+<div class="nav-actions"><button class="btn-ghost" onclick="openAuth('login')" >Log in</button><button class="btn-primary" onclick="openAuth('signup')" >Start free</button></div>
+</div></nav>
+
+<section class="hero">
+<div class="hero-grid"></div>
+<div class="hero-inner">
+<div class="hero-badge">Stop studying. Start operating.</div>
+<h1>Train for IT certifications<br>by doing the <span class="hero-accent">job</span></h1>
+<p class="hero-sub">Step into the role — data center technician, network ops engineer, cybersecurity engineer, AI integration specialist. Learn through immersive simulations, not flashcards. Chapter 1 of every course is free.</p>
+<div class="hero-cta">
+<button class="btn-hero" onclick="openAuth('signup')" >Start free chapter <span>&#8594;</span></button>
+<button class="btn-ghost-lg" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
+</div>
+<div class="terminal-preview">
+<div class="term-bar"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div><span class="term-title">certops-academy — simulation terminal</span></div>
+<div class="term-body">
+<div><span style="color:#a78bfa">[dispatch]</span> Ticket TKT-4821 assigned. Server unresponsive in Rack B3.</div>
+<div><span style="color:#a78bfa">[dispatch]</span> Host offline 12 min. Users report portal slowdowns.</div>
+<div><span style="color:#38bdf8">[you]</span> Inspect Rack B3 and identify the problem server</div>
+<div><span style="color:#fbbf24">[system]</span> Rack B3: 2nd unit has <strong style="color:#e8eaed">amber + red LED</strong>. Others green.</div>
+<div><span style="color:#38bdf8">[you]</span> Check and reseat cable connections</div>
+<div><span style="color:#fbbf24">[system]</span> Ethernet cable <strong style="color:#e8eaed">slightly unseated</strong> — clicks when pushed in.</div>
+<div><span style="color:#38bdf8">[you]</span> Power cycle and restore the server</div>
+<div><span style="color:#34d399">[success]</span> All LEDs solid green. Host online. <strong style="color:#e8eaed">Ticket resolved. &#11088;&#11088;&#11088;</strong></div>
+</div></div>
+<div class="hero-stats" style="margin-top:50px">
+<div class="hs"><span class="hs-num">4</span><span class="hs-label">Cert courses</span></div><div class="hs-divider"></div>
+<div class="hs"><span class="hs-num">40</span><span class="hs-label">Missions</span></div><div class="hs-divider"></div>
+<div class="hs"><span class="hs-num">100+</span><span class="hs-label">Simulations</span></div>
+</div></div><div class="hero-glow"></div>
+</section>
+
+<section class="tracks" id="tracks"><div class="section-inner">
+<div class="section-tag">Certification courses</div>
+<h2>Four roles. Four worlds. One platform.</h2>
+<p class="section-sub">Each cert course drops you into a distinct professional environment with its own narrative, tools, and escalating challenges.</p>
+<div class="track-grid">
+<div class="track-card" onclick="openAuth('signup')" ><div class="tc-badge tc-blue">A+ (Core 1 &amp; 2)</div><div class="tc-icon">&#128119;</div><h3>Data center technician</h3><p>Server bays, rack hardware, blinking LEDs, and crash carts. Troubleshoot physical infrastructure from the cold aisle to the power room.</p><div class="tc-meta"><span>16 missions</span><span>220-1201 &amp; 1202</span></div><div class="tc-free">&#10003; Chapter 1 free</div></div>
+<div class="track-card" onclick="openAuth('signup')" ><div class="tc-badge tc-cyan">Network+</div><div class="tc-icon">&#128225;</div><h3>NOC technician</h3><p>Live topology maps, switch CLIs, packet captures, and routing tables. Diagnose connectivity failures across the enterprise.</p><div class="tc-meta"><span>8 missions</span><span>N10-009</span></div><div class="tc-free">&#10003; Chapter 1 free</div></div>
+<div class="track-card" onclick="openAuth('signup')" ><div class="tc-badge tc-red">Security+</div><div class="tc-icon">&#128737;</div><h3>Cybersecurity engineer</h3><p>SOC dashboards, SIEM alerts, threat intelligence feeds, and incident response. Defend the enterprise against active threats.</p><div class="tc-meta"><span>8 missions</span><span>SY0-701</span></div><div class="tc-free">&#10003; Chapter 1 free</div></div>
+<div class="track-card" onclick="openAuth('signup')" ><div class="tc-badge" style="color:#a78bfa;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.2)">AI Essentials</div><div class="tc-icon">&#129302;</div><h3>AI integration specialist</h3><p>Prompt engineering, bias auditing, data preparation, and enterprise AI deployment. Master practical AI skills for the modern workplace.</p><div class="tc-meta"><span>8 missions</span><span>CompCert</span></div><div class="tc-free">&#10003; Chapter 1 free</div></div>
+</div></div></section>
+
+<section class="how" id="how"><div class="section-inner">
+<div class="section-tag">How it works</div>
+<h2>Study. Simulate. Score. Repeat.</h2>
+<p class="section-sub">Every chapter follows a proven game loop that turns exam objectives into immersive field experience.</p>
+<div class="steps-grid">
+<div class="step"><div class="step-num">01</div><h3>Read the field manual</h3><p>Each chapter starts with an interactive study guide — clickable cards, embedded quizzes, term-matching games, and exam tips woven into the narrative.</p></div>
+<div class="step"><div class="step-num">02</div><h3>Deploy to the simulation</h3><p>Get dispatched to a realistic scenario — a downed server, a network outage, a security breach. Use your toolbelt and troubleshoot under pressure.</p></div>
+<div class="step"><div class="step-num">03</div><h3>Hidden checklist scoring</h3><p>You don't see objectives during the sim. Afterward, the full checklist reveals what you nailed and what you missed — like a real performance review.</p></div>
+<div class="step"><div class="step-num">04</div><h3>Earn XP & unlock missions</h3><p>Star ratings, XP accumulation, and rank progression unlock the next chapter. Replay any mission to improve your score and climb the ranks.</p></div>
+</div></div></section>
+
+<section class="pricing" id="pricing"><div class="section-inner">
+<div class="section-tag">Pricing</div>
+<h2>Start free. Upgrade when you're hooked.</h2>
+<p class="section-sub">Chapter 1 of every course is completely free — no credit card required.</p>
+<div class="pricing-grid">
+<div class="price-card"><div class="pc-name">Recruit</div><div class="pc-price">Free</div><div class="pc-desc">Try before you buy</div><ul><li>&#10003; Chapter 1 of all 4 courses</li><li>&#10003; Full study guide + simulation</li><li>&#10003; Score tracking & XP</li><li class="dim">&#10007; Chapters 2-8 locked</li><li class="dim">&#10007; No completion certificate</li></ul><button class="btn-outline" onclick="openAuth('signup')" >Start free</button></div>
+<div class="price-card featured"><div class="pc-pop">Most popular</div><div class="pc-name">Operator</div><div class="pc-price">$29<span>/mo</span></div><div class="pc-desc">Full access to one course</div><ul><li>&#10003; All 8 chapters of 1 course</li><li>&#10003; Unlimited simulation retries</li><li>&#10003; Progress tracking & analytics</li><li>&#10003; Certificate of completion</li><li class="dim">&#10007; Other courses locked</li></ul><button class="btn-primary-lg" onclick="openAuth('signup')" >Get started</button></div>
+<div class="price-card"><div class="pc-name">Commander</div><div class="pc-price">$49<span>/mo</span></div><div class="pc-desc">All courses, unlimited</div><ul><li>&#10003; All 4 certification courses</li><li>&#10003; All 40 missions unlocked</li><li>&#10003; Priority new content</li><li>&#10003; Certificates for all courses</li><li>&#10003; Exam readiness score</li></ul><button class="btn-outline" onclick="openAuth('signup')" >Go all-in</button></div>
+</div></div></section>
+
+<section class="contact" id="contact"><div class="section-inner">
+<div class="section-tag">Get in touch</div>
+<h2>Contact us</h2>
+<p class="section-sub">Have questions about the platform, need help with your account, or want to share feedback? We'd love to hear from you.</p>
+<div class="contact-inner">
+<div class="contact-info">
+<h3>Other ways to reach us</h3>
+<p>Our support team typically responds within 24 hours on business days.</p>
+<div class="contact-channels">
+<div class="cc-item"><div class="cc-ico">&#9993;</div><div><div class="cc-label">Email</div><div class="cc-val">support@certopsacademy.com</div></div></div>
+<div class="cc-item"><div class="cc-ico">&#128227;</div><div><div class="cc-label">Social</div><div class="cc-val">@CertOpsAcademy</div></div></div>
+</div>
+</div>
+<div>
+<div id="contactForm" class="contact-form">
+<input type="text" placeholder="Your name" id="contactName">
+<input type="email" placeholder="Email address" id="contactEmail">
+<select style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text2);outline:none;" id="contactTopic">
+<option value="">Select a topic...</option>
+<option value="support">Technical support</option>
+<option value="billing">Billing &amp; subscriptions</option>
+<option value="feedback">Feedback &amp; suggestions</option>
+<option value="other">Other</option>
+</select>
+<textarea placeholder="How can we help?" id="contactMsg"></textarea>
+<button class="btn-send" onclick="submitContact()">Send message</button>
+</div>
+<div id="contactSuccess" class="form-success">
+<div class="fs-ico">&#9989;</div>
+<h3>Message sent!</h3>
+<p>Thanks for reaching out. We'll get back to you within 24 hours.</p>
+</div>
+</div>
+</div>
+</div></section>
+
+<footer class="footer"><div class="footer-inner">
+<div class="logo"><span class="logo-icon">&#9881;</span> CertOps<span class="logo-accent">Academy</span></div>
+<p>&copy; 2026 CertOps Academy. CompTIA A+, Network+, and Security+ are trademarks of CompTIA, Inc. Not affiliated with or endorsed by CompTIA.</p>
+</div></footer>
+
+
+<div class="modal-overlay" id="authModal"><div class="modal-card">
+<button class="modal-close" onclick="closeAuth()">&times;</button>
+<h3 id="authTitle" style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:700;margin-bottom:4px">Create your account</h3>
+<p id="authSub" style="font-size:13px;color:#8b95a5;margin-bottom:16px">Start with Chapter 1 free — no credit card required.</p>
+<div id="authNameRow"><input type="text" id="authName" placeholder="Your name" style="width:100%;padding:11px 14px;background:#080b10;border:1px solid #1a2030;border-radius:8px;color:#e8eaed;font-family:'Outfit',sans-serif;font-size:14px;outline:none;margin-bottom:8px"></div>
+<input type="email" id="authEmail" placeholder="Email address" style="width:100%;padding:11px 14px;background:#080b10;border:1px solid #1a2030;border-radius:8px;color:#e8eaed;font-family:'Outfit',sans-serif;font-size:14px;outline:none;margin-bottom:8px">
+<input type="password" id="authPass" placeholder="Password (min 6 characters)" style="width:100%;padding:11px 14px;background:#080b10;border:1px solid #1a2030;border-radius:8px;color:#e8eaed;font-family:'Outfit',sans-serif;font-size:14px;outline:none;margin-bottom:14px">
+<button id="authBtn" onclick="handleAuth()" style="width:100%;padding:13px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);color:#38bdf8;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;border-radius:8px;cursor:pointer">Create account & start free</button>
+<p style="font-size:12px;color:#3e4a5c;margin-top:12px;text-align:center">
+<span id="authToggleText">Already have an account?</span> <a id="authToggleLink" onclick="toggleAuthMode()" style="color:#38bdf8;cursor:pointer">Log in</a>
+</p>
+</div></div>
+<script>
+var authMode='signup';
+var sbClient = supabase.createClient('https://dfbylunacfziuejbfbqw.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRmYnlsdW5hY2Z6aXVlamJmYnF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MDEwMDgsImV4cCI6MjA4OTI3NzAwOH0.vJe3HjGHKHgVuzeAIIibt3833Xxo0M8DIsbORBEN32g');
+function openAuth(m){authMode=m||'signup';document.getElementById('authModal').classList.add('open');updateAuthUI();}
+function closeAuth(){document.getElementById('authModal').classList.remove('open');}
+function updateAuthUI(){
+  var t=document.getElementById('authTitle'),s=document.getElementById('authSub'),b=document.getElementById('authBtn'),n=document.getElementById('authNameRow'),tt=document.getElementById('authToggleText'),tl=document.getElementById('authToggleLink');
+  if(authMode==='login'){t.textContent='Welcome back';s.textContent='Log in to continue your training.';b.textContent='Log in';n.style.display='none';tt.textContent="Don't have an account?";tl.textContent='Sign up';}
+  else{t.textContent='Create your account';s.textContent='Start with Chapter 1 free — no credit card required.';b.textContent='Create account & start free';n.style.display='';tt.textContent='Already have an account?';tl.textContent='Log in';}
+}
+function toggleAuthMode(){authMode=authMode==='signup'?'login':'signup';updateAuthUI();}
+async function handleAuth(){
+  var email=document.getElementById('authEmail').value,pass=document.getElementById('authPass').value,name=document.getElementById('authName').value;
+  if(!email||!pass){alert('Please enter email and password.');return;}
+  if(authMode==='signup'){
+    if(pass.length<6){alert('Password must be at least 6 characters.');return;}
+    var r=await sbClient.auth.signUp({email:email,password:pass});
+    if(r.error){alert(r.error.message);return;}
+    if(r.data&&r.data.user){setTimeout(function(){sbClient.from('profiles').update({name:name||email.split('@')[0]}).eq('id',r.data.user.id);},1000);alert('Account created! Check your email to confirm your account, then log in.');authMode='login';updateAuthUI();}
+  }else{
+    var r=await sbClient.auth.signInWithPassword({email:email,password:pass});
+    if(r.error){alert(r.error.message);return;}
+    if(r.data&&r.data.session){window.location.href='app.html';}
+  }
+}
+document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeAuth();});
+// Check if already logged in — redirect to app
+sbClient.auth.getSession().then(function(r){if(r.data&&r.data.session){/* User already logged in — they can click through */}});
+function submitContact(){var n=document.getElementById('contactName').value,e=document.getElementById('contactEmail').value,m=document.getElementById('contactMsg').value;if(n&&e&&m){document.getElementById('contactForm').style.display='none';document.getElementById('contactSuccess').classList.add('show');}else{alert('Please fill in all fields.');}}
+</script>
+
+
+</body></html>
