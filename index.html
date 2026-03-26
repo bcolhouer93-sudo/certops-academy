@@ -271,19 +271,20 @@ a { color: var(--cyan); text-decoration: none; cursor: pointer; }
 </div>
 </div>
 <div>
-<div id="contactForm" class="contact-form">
-<input type="text" placeholder="Your name" id="contactName">
-<input type="email" placeholder="Email address" id="contactEmail">
-<select style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text2);outline:none;" id="contactTopic">
+<form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true">
+<input type="hidden" name="form-name" value="contact">
+<input type="text" placeholder="Your name" id="contactName" name="name">
+<input type="email" placeholder="Email address" id="contactEmail" name="email">
+<select style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text2);outline:none;" id="contactTopic" name="topic">
 <option value="">Select a topic...</option>
 <option value="support">Technical support</option>
 <option value="billing">Billing &amp; subscriptions</option>
 <option value="feedback">Feedback &amp; suggestions</option>
 <option value="other">Other</option>
 </select>
-<textarea placeholder="How can we help?" id="contactMsg"></textarea>
-<button class="btn-send" onclick="submitContact()">Send message</button>
-</div>
+<textarea placeholder="How can we help?" id="contactMsg" name="message"></textarea>
+<button type="button" class="btn-send" onclick="submitContact()">Send message</button>
+</form>
 <div id="contactSuccess" class="form-success">
 <div class="fs-ico">&#9989;</div>
 <h3>Message sent!</h3>
@@ -339,7 +340,7 @@ async function handleAuth(){
 document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeAuth();});
 // Check if already logged in — redirect to app
 sbClient.auth.getSession().then(function(r){if(r.data&&r.data.session){/* User already logged in — they can click through */}});
-function submitContact(){var n=document.getElementById('contactName').value,e=document.getElementById('contactEmail').value,m=document.getElementById('contactMsg').value;if(n&&e&&m){document.getElementById('contactForm').style.display='none';document.getElementById('contactSuccess').classList.add('show');}else{alert('Please fill in all fields.');}}
+function submitContact(){var n=document.getElementById('contactName').value,e=document.getElementById('contactEmail').value,t=document.getElementById('contactTopic'),topic=t?t.options[t.selectedIndex].text:'General',m=document.getElementById('contactMsg').value;if(n&&e&&m){fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'form-name=contact&name='+encodeURIComponent(n)+'&email='+encodeURIComponent(e)+'&topic='+encodeURIComponent(topic)+'&message='+encodeURIComponent(m)}).then(function(){document.getElementById('contactForm').style.display='none';document.getElementById('contactSuccess').classList.add('show');}).catch(function(){alert('Error sending message. Please try again.');});}else{alert('Please fill in all fields.');}}
 </script>
 
 
