@@ -1810,6 +1810,15 @@ window.App = {
   },
   examPrev() { if (state.exam && state.exam.qIdx > 0) { state.exam.qIdx--; render(); window.scrollTo(0,0); } },
   retakeExam() { if (state.exam) this.startExam(state.exam.examId); },
+  sendContact() {
+    var n=$('appName'),e=$('appEmail'),t=$('appTopic'),m=$('appMsg');
+    var name=n?n.value:'',email=e?e.value:'',topic=t?t.options[t.selectedIndex].text:'General',msg=m?m.value:'';
+    if(name&&email&&msg){
+      fetch('https://formspree.io/f/xqegklqb',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,topic:topic,message:msg})})
+      .then(function(){document.getElementById('appContactForm').innerHTML='<div style="text-align:center;padding:24px"><div style="font-size:40px;margin-bottom:10px">&#9989;</div><h3 style="font-size:17px;margin-bottom:6px">Message sent!</h3><p style="font-size:13px;color:#8b95a5">Thanks for reaching out. We will get back to you within 24 hours.</p></div>';})
+      .catch(function(){alert('Error sending message. Please try again.');});
+    }else{alert('Please fill in all fields.');}
+  },
   downloadCertificate() {
     const t = TRACKS[state.track];
     const tp = getTrackProgress(state.track);
@@ -2258,11 +2267,11 @@ function renderContact() {
       <h2 style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px">Get in touch</h2>
       <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6">Have questions, need help, or want to share feedback? Reach out and we'll get back to you within 24 hours.</p>
       <div id="appContactForm" style="display:flex;flex-direction:column;gap:10px">
-        <input type="text" placeholder="Your name" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none">
-        <input type="email" placeholder="Email address" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none">
-        <select style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text2);outline:none"><option value="">Select a topic...</option><option>Technical support</option><option>Billing & subscriptions</option><option>Feedback & suggestions</option><option>Other</option></select>
-        <textarea placeholder="How can we help?" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none;min-height:120px;resize:vertical"></textarea>
-        <button onclick="document.getElementById('appContactForm').innerHTML='<div style=\\'text-align:center;padding:24px\\'><div style=\\'font-size:40px;margin-bottom:10px\\'>&#9989;</div><h3 style=\\'font-size:17px;margin-bottom:6px\\'>Message sent!</h3><p style=\\'font-size:13px;color:#8b95a5\\'>Thanks for reaching out. We will get back to you within 24 hours.</p></div>'" style="width:100%;padding:13px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);color:#38bdf8;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;border-radius:8px;cursor:pointer">Send message</button>
+        <input type="text" id="appName" placeholder="Your name" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none">
+        <input type="email" id="appEmail" placeholder="Email address" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none">
+        <select id="appTopic" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text2);outline:none"><option value="">Select a topic...</option><option>Technical support</option><option>Billing & subscriptions</option><option>Feedback & suggestions</option><option>Other</option></select>
+        <textarea id="appMsg" placeholder="How can we help?" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text1);outline:none;min-height:120px;resize:vertical"></textarea>
+        <button onclick="App.sendContact()" style="width:100%;padding:13px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);color:#38bdf8;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;border-radius:8px;cursor:pointer">Send message</button>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
